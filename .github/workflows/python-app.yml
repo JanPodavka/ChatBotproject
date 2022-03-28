@@ -36,4 +36,4 @@ jobs:
         python -m pytest
     - name: Generate coverage report
       run: |
-        pytest --cov=./ --cov-report=xml
+        python -m pytest --cov=./ --cov-report=xml
