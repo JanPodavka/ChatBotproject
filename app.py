@@ -1,8 +1,15 @@
-def test_tests(a, b):
-    if a > b:
+"""
+    testing module
+"""
+
+
+def test_tests(number_one, number_two):
+    """
+        testing workflow
+    """
+    if number_one > number_two:
         return 5
-    else:
-        return 0
+    return 0
 
 
 if __name__ == '__main__':
