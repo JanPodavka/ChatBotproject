@@ -1,12 +1,10 @@
-from flask import Flask
-
-app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello Honza!'
+def test_tests(a, b):
+    if a > b:
+        return 5
+    else:
+        return 0
 
 
 if __name__ == '__main__':
-    app.run()
+    print(test_tests(5, 4))
+    print(test_tests(4, 5))
