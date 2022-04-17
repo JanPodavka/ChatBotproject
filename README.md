@@ -20,6 +20,14 @@ Aplikace bude sloužit ke komunikaci s tzv. Chatbotem.
 - dotaz na kurz: zobrazí se aktuální měnový kurz dle ČNB
 - dotaz na jméno: zobrazí se jméno chatbota
 
+## Vstupní data
+- uživatel ve formě dotazu
+- ČNB: data o aktuálním kurzu získané z webové stránky https://www.api.store/cnb.cz/?msclkid=64c36be8be9011ecbf7ee9e40c4499bd
+- aktuální systémový čas
+
+## Výstupní data
+
+- standartní výstup webové aplikace
 
 ## Uživatelské požadavky
 
