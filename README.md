@@ -66,4 +66,4 @@ Od uživatele se předpokládají následující požadavky:
  - Resetování stránky: dojde ke smazání historie s chatbotem
  - Dotaz mimo specifikaci: uživatel bude botem vyvzván k opravě dotazu
  - Kurz během víkendu a svátků: uživatel dostane informaci o kurzu, který byl posledný aktulizovaný
- - Výpadek serveru ČNB nebo změna formátu kruzu: nezobrazí se aktuální kurz
+ - Výpadek serveru ČNB nebo změna formátu kurzu: nezobrazí se aktuální kurz
