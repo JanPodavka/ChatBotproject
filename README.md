@@ -2,7 +2,7 @@
 
 ## Úvod
 
-Aplikace bude sloužit ke komunikaci s tzv. Chatbotem.
+Aplikace bude sloužit ke komunikaci s tzv. Chatbotem skrze webovou aplikaci.
 
 ## Pojmy
 - Chatbot: program určený k automatizované komunikaci s lidmi. Tato implementace obsahuje již předdefinovanou řadu dotazů a odpovědí na ně
@@ -16,26 +16,26 @@ Aplikace bude sloužit ke komunikaci s tzv. Chatbotem.
 <img src="https://github.com/JanPodavka/ChatBotproject/blob/master/data/ucd.jpg">
 
 ### Slovní popis funkcí
-- dotaz na čas: zobrazí se aktuální SEČ
-- dotaz na kurz: zobrazí se aktuální měnový kurz dle ČNB
-- dotaz na jméno: zobrazí se jméno chatbota
+- Dotaz na čas: zobrazí se aktuální SEČ
+- Dotaz na kurz: zobrazí se aktuální měnový kurz dle ČNB
+- Dotaz na jméno: zobrazí se jméno chatbota
 
 ## Vstupní data
-- uživatel ve formě dotazu
+- Uživatel ve formě dotazu
 - ČNB: data o aktuálním kurzu získané z webové stránky https://www.api.store/cnb.cz/?msclkid=64c36be8be9011ecbf7ee9e40c4499bd
-- aktuální systémový čas
+- Aktuální systémový čas
 
 ## Výstupní data
 
-- standartní výstup webové aplikace
+- Standartní výstup webové aplikace
 
 ## Uživatelské požadavky
 
  Chatbot bude umět odpovídat na následující dotazy v níže specifikovaném formátu:
  
- - "jaký je čas ?"
- - "jak se jmenuješ ?"
- - "aktuální kurz EUR vůči CZK ?"
+ - "Jaký je čas?"
+ - "Jak se jmenuješ?"
+ - "Aktuální kurz EUR vůči CZK?"
 
 ## Specifikace systému
 Od uživatele se předpokládají následující požadavky:
