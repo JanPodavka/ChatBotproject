@@ -1,1 +1,3 @@
-# ChatBox_STIN
+# ChatBox DSP - softwarové inženýrství
+
+## Uživatelské požadavky
