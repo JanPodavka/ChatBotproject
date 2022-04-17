@@ -56,6 +56,7 @@ Od uživatele se předpokládají následující požadavky:
 
 - 2,000 CPU vteřin
 - Maximální počet dotazů: 100 000 hit/den
+- 1GB místa na disku
 
 ### Chybové stavy
 
