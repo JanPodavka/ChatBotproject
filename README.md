@@ -52,6 +52,10 @@ Od uživatele se předpokládají následující požadavky:
 - Programovací jazyk: Python verze 3.9
 - Framework pro webovou aplikaci: Flask
 
+### Omezení ze strany serveru:
+
+- 2,000 CPU vteřin
+- Maximální počet dotazů: 100 000 hit/den
 
 ### Chybové stavy
 
