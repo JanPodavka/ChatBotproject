@@ -4,10 +4,12 @@ import locale
 from datetime import datetime
 
 from flask import Flask, render_template, request
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
-
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 # define app routes
 @app.route("/")
