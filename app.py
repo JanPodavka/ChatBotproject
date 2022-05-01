@@ -11,6 +11,12 @@ app = Flask(__name__)
 csrf = CSRFProtect()
 csrf.init_app(app)
 
+
+def create_app():
+    app = Flask(__name__)
+    csrf = CSRFProtect()
+    csrf.init_app(app)
+
 # define app routes
 @app.route("/")
 def test():

@@ -1,4 +1,5 @@
 flask
+flask_wtf
 pytest
 pytest-cov
 Click==7.0
