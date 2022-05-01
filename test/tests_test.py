@@ -1,6 +1,6 @@
 import pytest
 from app import create_app
-from app import fake
+
 
 
 @pytest.fixture()
@@ -23,5 +23,4 @@ def client(app):
 def runner(app):
     return app.test_cli_runner()
 
-def test_answer():
-    assert fake(3, 3) == 3
+
