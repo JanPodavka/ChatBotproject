@@ -1,22 +1,27 @@
-import app
+import pytest
+from app import create_app
+from app import fake
 
 
+@pytest.fixture()
+def app():
+    app = create_app()
+    app.config.update({
+        "TESTING": True,
+    })
 
-def testing():
-    """
-       ret 5
-    """
-    assert app.test_tests(5, 4) == 5
+    # other setup can go here
+
+    yield app
+
+@pytest.fixture()
+def client(app):
+    return app.test_client()
 
 
-def testing_no():
-    """
-        ret 0
-    """
-    assert app.test_tests(4, 5) == 0
+@pytest.fixture()
+def runner(app):
+    return app.test_cli_runner()
 
-def testing_no2():
-    """
-        ret 0
-    """
-    assert app.test_tests(0, 0) == 0
+def test_answer():
+    assert fake(3, 3) == 3
