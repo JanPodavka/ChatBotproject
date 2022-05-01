@@ -1,11 +1,9 @@
-
 # imports
 import locale
 from datetime import datetime
 
 from flask import Flask, render_template, request
 from flask_wtf.csrf import CSRFProtect
-
 
 app = Flask(__name__)
 csrf = CSRFProtect()
@@ -16,6 +14,7 @@ def create_app():
     app = Flask(__name__)
     csrf = CSRFProtect()
     csrf.init_app(app)
+
 
 # define app routes
 @app.route("/")
@@ -37,6 +36,13 @@ def get_answer(question):
 
     else:
         return "nerozumím"
+
+
+def fake(a, b):
+    if a == b:
+        return a
+    else:
+        return b
 
 
 if __name__ == "__main__":
