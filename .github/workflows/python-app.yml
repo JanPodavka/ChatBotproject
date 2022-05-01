@@ -40,6 +40,12 @@ jobs:
     - name: Generate coverage report
       run: |
         python -m pytest --cov=./ --cov-report=xml
+    - name: Upload to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "chatbotstin" #Must be unique in Heroku
+        heroku_email: "hon.za.podavka@gmail.com"
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with: #test
