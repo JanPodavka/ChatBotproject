@@ -2,7 +2,7 @@
 import locale
 import nltk
 import unidecode
-
+import pytz
 from datetime import datetime
 
 from flask import Flask, render_template, request
@@ -28,7 +28,7 @@ def get_bot_response():
 def get_answer(question):
     norm_question = unidecode.unidecode(question.lower())
     if nltk.edit_distance(norm_question, "jaky je cas?") < 2:
-        now = datetime.now()
+        now = datetime.now(pytz.timezone('CET'))
         return now.strftime("%H:%M:%S")
     elif nltk.edit_distance(norm_question, "jaky je kurz?") < 2:
         pass
