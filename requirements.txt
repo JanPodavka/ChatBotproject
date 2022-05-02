@@ -11,5 +11,3 @@ Werkzeug==0.15.6
 nltk
 unidecode
 pytz
-re
-urllib
