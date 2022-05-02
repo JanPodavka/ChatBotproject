@@ -10,5 +10,6 @@ MarkupSafe==1.1.1
 Werkzeug==0.15.6
 nltk
 unidecode
+pytz
 re
 urllib
