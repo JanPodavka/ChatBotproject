@@ -48,6 +48,8 @@ def get_answer(question):
         return "Aktualni kurz ke dni " + date + " je " + course + " CZE/EUR"
     elif nltk.edit_distance(norm_question, "jak se jmenujes?") < 2:
         return "Jmenuji se Chatbot"
+    elif nltk.edit_distance(norm_question, "help?") < 2:
+        return "Jaký je čas?\nJaký je kurz?\nJak se jmenuješ"
     else:
         return "nerozumím"
 
