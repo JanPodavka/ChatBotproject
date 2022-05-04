@@ -81,10 +81,10 @@ jobs:
       run: |
         echo "cov single fail ${{ steps.pytester-cover.outputs.cov-threshold-single-fail }}"
         exit 1
-    - name: Coverage total fail - new issue
-      if: ${{ steps.pytester-cover.outputs.cov-threshold-total-fail == 'true' }}
-      uses: nashmaniac/create-issue-action@v1.1
-      with:
+#     - name: Coverage total fail - new issue
+#       if: ${{ steps.pytester-cover.outputs.cov-threshold-total-fail == 'true' }}
+#       uses: nashmaniac/create-issue-action@v1.1
+#       with:
         title: Pytest coverage total falls below minimum ${{ env.COVERAGE_TOTAL }}
         token: ${{secrets.GITHUB_TOKEN}}
         assignees: ${{github.actor}}
