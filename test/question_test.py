@@ -1,5 +1,3 @@
-
-import pytest
 import time
 from app import get_answer
 
@@ -18,7 +16,7 @@ def test_name_positive():
 def test_name_negative():
     assert get_answer("jake je tve jmeno") == uncorrect_answer
     assert get_answer("jak se menujes") == uncorrect_answer
-    assert get_answer("Od kud jsi") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
     assert get_answer("Jak te pojmenovali tvy rodice") == uncorrect_answer
     assert get_answer("jmeno tve") == uncorrect_answer
 
