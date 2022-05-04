@@ -1,7 +1,9 @@
+import urllib
 from datetime import datetime
-import time
 from app import get_answer
 import pytz
+from flask import Flask, render_template, request
+from flask_wtf.csrf import CSRFProtect
 
 uncorrect_answer = "nerozumím"
 correct_answer_name = "Jmenuji se Chatbot"
@@ -21,6 +23,7 @@ def test_name_negative():
     assert get_answer("") == uncorrect_answer
     assert get_answer("Jak te pojmenovali tvy rodice") == uncorrect_answer
     assert get_answer("jmeno tve") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
 
 
 def test_time_positive():
@@ -44,4 +47,31 @@ def test_time_negative():
     assert get_answer("Más slunecni hodiny") == uncorrect_answer
     assert get_answer("What time is it?") == uncorrect_answer
     assert get_answer("Čas?????????") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
+
+def test_course_negative():
+    assert get_answer("jaky je kursz") == uncorrect_answer
+    assert get_answer("kolik je za euro") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
+    assert get_answer("kolik stoji euro") == uncorrect_answer
+    assert get_answer("jaky je kurz dolaru") == uncorrect_answer
+    assert get_answer("jaky je kursk?") == uncorrect_answer
+
+
+def test_course_positive():
+    url = 'https://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt?date={0:dd\.MM\.yyyy}'
+    req = urllib.request.Request(url)
+    req.add_header('x-api-key', 'i562s3R0gL3DbL0Pr6D0o1JjsTSAUgA9a1KlNhtB')
+    response = urllib.request.urlopen(req)
+    data = str(response.read()).split("\\n")
+    course = [s for s in data if "EUR" in s][0].split("|")[4]
+    date = data[0].split(" ")[0].split("'")[1]
+    current_answer = "Aktualni kurz ke dni " + date + " je " + course + " CZE/EUR"
+    assert get_answer("jaky je kurz?") == current_answer
+    assert get_answer("jaky je kurz") == current_answer
+    assert get_answer("jaký je kurz?") == current_answer
+    assert get_answer("jaký je kurz") == current_answer
+    assert get_answer("Jaký je kurz") == current_answer
+    assert get_answer("Jaký je kurz?") == current_answer
+
 
