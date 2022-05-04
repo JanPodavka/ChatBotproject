@@ -1,5 +1,7 @@
+from datetime import datetime
 import time
 from app import get_answer
+import pytz
 
 uncorrect_answer = "nerozumím"
 correct_answer_name = "Jmenuji se Chatbot"
@@ -22,8 +24,9 @@ def test_name_negative():
 
 
 def test_time_positive():
-    t = time.localtime()
-    current_time = time.strftime("%H:%M:%S", t)
+    time_zone = pytz.timezone('Europe/Prague')
+    t = datetime.now(time_zone)
+    current_time = t.strftime("%H:%M:%S")
     assert get_answer("jaky je cas?") == current_time
     assert get_answer("jaky je cas") == current_time
     assert get_answer("jaky je čas") == current_time
