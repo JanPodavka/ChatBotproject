@@ -74,4 +74,18 @@ def test_course_positive():
     assert get_answer("Jaký je kurz") == current_answer
     assert get_answer("Jaký je kurz?") == current_answer
 
+def test_help_positive():
+    correct_answer = "Jaký je čas?\nJaký je kurz?\nJak se jmenuješ"
+    assert get_answer("help") == correct_answer
+    assert get_answer("Help") == correct_answer
+    assert get_answer("help?") == correct_answer
+    assert get_answer("Help?") == correct_answer
 
+
+def test_help_negative():
+    assert get_answer("Pomoooc?") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
+    assert get_answer("Help me") == uncorrect_answer
+    assert get_answer("Jake mohu mít otázky") == uncorrect_answer
+    assert get_answer("Pomoz mi") == uncorrect_answer
+    assert get_answer("Help plllz") == uncorrect_answer
