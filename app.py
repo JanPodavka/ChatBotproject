@@ -66,6 +66,7 @@ def history_course(count_days=14):
     return ret_data
 
 
+
 def get_answer(question):
     norm_question = unidecode.unidecode(question.lower())
     if nltk.edit_distance(norm_question, "jaky je cas?") < 2:

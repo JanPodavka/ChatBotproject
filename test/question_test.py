@@ -49,6 +49,7 @@ def test_time_negative():
     assert get_answer("Čas?????????") == uncorrect_answer
     assert get_answer("") == uncorrect_answer
 
+
 def test_course_negative():
     assert get_answer("jaky je kursz") == uncorrect_answer
     assert get_answer("kolik je za euro") == uncorrect_answer
