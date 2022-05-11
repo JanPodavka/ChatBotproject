@@ -57,7 +57,9 @@ def history_course(count_days):
     if len(data) < count_days:
         data = get_data(str(curr_year-1)) + data
     data = data[-count_days:]
-    print(data)
+    ret_data = "Kurz za poslednich " + str(count_days) + ". dni:\n"
+    for day in data:
+        ret_data += day.replace("|", " ") + "\n"
 
 
 def get_answer(question):
@@ -70,6 +72,8 @@ def get_answer(question):
         return "Aktualni kurz ke dni " + date + " je " + course + " CZE/EUR"
     elif nltk.edit_distance(norm_question, "jak se jmenujes?") < 2:
         return "Jmenuji se Chatbot"
+    elif nltk.edit_distance(norm_question, "jaka je historie kurzu?") < 2:
+        return history_course(14)
     elif nltk.edit_distance(norm_question, "help?") < 2:
         return "Jaký je čas?\nJaký je kurz?\nJak se jmenuješ"
     else:
