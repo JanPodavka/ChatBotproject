@@ -6,6 +6,7 @@ import nltk
 import unidecode
 import pytz
 from datetime import datetime
+from datetime import date
 
 from flask import Flask, render_template, request
 from flask_wtf.csrf import CSRFProtect
@@ -38,6 +39,29 @@ def current_course():
     return date, kurz
 
 
+def get_data(year):
+    url = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/vybrane.txt?od=01.01.' + year + '&do=31.05.' + year + '&mena=EUR&format=txt'
+    req = urllib.request.Request(url)
+    req.add_header('x-api-key', '45TzSCfYbT9SgA28vSO9rdxQHO3YKML6M4Qi045d')
+    response = urllib.request.urlopen(req)
+    data = str(response.read()).split("\\n")
+    del data[0]
+    del data[0]
+    del data[len(data) - 1]
+    return data
+
+
+def history_course(count_days):
+    curr_year = datetime.today().year
+    data = get_data(str(curr_year))
+    if len(data) < count_days:
+        data = get_data(str(curr_year-1)) + data
+    data = data[-count_days:]
+    ret_data = "Kurz za poslednich " + str(count_days) + ". dni:\n"
+    for day in data:
+        ret_data += day.replace("|", " ") + "\n"
+
+
 def get_answer(question):
     norm_question = unidecode.unidecode(question.lower())
     if nltk.edit_distance(norm_question, "jaky je cas?") < 2:
@@ -48,6 +72,8 @@ def get_answer(question):
         return "Aktualni kurz ke dni " + date + " je " + course + " CZE/EUR"
     elif nltk.edit_distance(norm_question, "jak se jmenujes?") < 2:
         return "Jmenuji se Chatbot"
+    elif nltk.edit_distance(norm_question, "jaka je historie kurzu?") < 2:
+        return history_course(14)
     elif nltk.edit_distance(norm_question, "help?") < 2:
         return "Jaký je čas?\nJaký je kurz?\nJak se jmenuješ"
     else:
@@ -55,4 +81,5 @@ def get_answer(question):
 
 
 if __name__ == "__main__":
-    app.run()
+    history_course()
+    #app.run()
