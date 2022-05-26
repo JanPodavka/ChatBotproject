@@ -198,5 +198,12 @@ def test_recomen_answer_positive():
         odpoved.append("Kurz by se dal doporucit pokud by klesl o %.3f na %.3f <br>" % (ten_percent, today_course + ten_percent))
 
     assert get_answer("Doporucujes mi euro?") == "".join(odpoved)
+    assert get_answer("Doporucujes mi euro") == "".join(odpoved)
+    assert get_answer("Doporucuješ mi euro?") == "".join(odpoved)
+    assert get_answer("doporucuješ mi euro") == "".join(odpoved)
 
-
+def test_recomen_answer_negative():
+    assert get_answer("Doporucujes euro?") == uncorrect_answer
+    assert get_answer("Doporucujes mi dnes euro") == uncorrect_answer
+    assert get_answer("") == uncorrect_answer
+    assert get_answer("doporucuješ mi eura dnes") == uncorrect_answer
