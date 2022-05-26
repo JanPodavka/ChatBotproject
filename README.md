@@ -119,4 +119,4 @@ Pokud se průměr zvýšil o více než 10 % z průměru za poslední 3 dny:
 
 ## Use case diagram rozšíření
 
-<img src="https://github.com/JanPodavka/ChatBotproject/blob/master/data/chatbot_diagram_enchanted.jpg">
+<img src="https://github.com/JanPodavka/ChatBotproject/blob/master/data/Chatbot.png">
