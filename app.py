@@ -101,7 +101,7 @@ def get_answer(question):
         return "Jmenuji se Chatbot"
     elif nltk.edit_distance(norm_question, "jaka je historie kurzu eura?") < 2:
         return history_course()
-    elif nltk.edit_distance(norm_question, "Doporucujes mi euro?") < 2:
+    elif nltk.edit_distance(norm_question, "doporucujes mi euro?") < 2:
         data = get_recomendation_data()
         recomendation, recomendation_by_down, recomendation_by_mean, today_course, mean, distance, prah_distance = course_recommendation(data)
         odpoved = "Ano, kurz eura je dnes doporucen.<br>" if recomendation else "Ne, kurz eura neni dnes doporucovan.<br>"
