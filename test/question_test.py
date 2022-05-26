@@ -1,6 +1,9 @@
+import random
 import urllib
 from datetime import datetime
 from app import get_answer
+from app import course_recommendation
+from app import get_recomendation_data
 import pytz
 from flask import Flask, render_template, request
 from flask_wtf.csrf import CSRFProtect
@@ -130,13 +133,70 @@ def get_history_courses_data(count_days):
     return ret_data
 
 
-def test_history_courses_positive():
-    current_answer = get_history_courses_data(14)
-    assert get_answer("jaka je historie kurzu eura?") == current_answer
-    assert get_answer("Jaka je historie kurzu eura?") == current_answer
-    assert get_answer("jaka je historie kurzu eura") == current_answer
-    assert get_answer("Jaka je historie kurzu eura") == current_answer
-    assert get_answer("Jaká je historie kurzu eura?") == current_answer
-    assert get_answer("Jaká je historie kurzu eura") == current_answer
-    assert get_answer("jaká je historie kurzu eura?") == current_answer
-    assert get_answer("jaká je historie kurzu eura") == current_answer
+def get_recomend_courses(today_courses, hist_courses):
+    recomendation_by_down = True
+    for it in range(len(hist_courses)-1):
+        if hist_courses[it] < hist_courses[it+1]:
+            recomendation_by_down = False
+            break
+    mean = sum(hist_courses)/3
+    recomendation_by_mean = today_courses < (mean + (10 / 100 * mean))
+    recomendation = recomendation_by_down or recomendation_by_mean
+    return recomendation, recomendation_by_down, recomendation_by_mean, today_courses, round(mean, 3), round(hist_courses[0] - today_courses, 3), round(today_courses - mean + (10 / 100 * mean), 3)
+
+
+def test_recomen_courses():
+    print()
+    for i in range(10):
+        courses = [None] * 4
+        for it, cours in enumerate(courses):
+            courses[it] = round(random.uniform(20, 30), 3)
+        assert course_recommendation(courses) == get_recomend_courses(courses[3], courses[0:3])
+        print("Test %d." %i )
+
+def get_recomen_data():
+    data = get_history_courses_data(4)
+    data = data.split("<br>")
+    del data[0]
+    courses = []
+    for dat in data:
+        if dat != "":
+            course = dat.split(" ")
+            course = course[1].replace(",", ".")
+            courses.append(float(course))
+    return courses
+
+
+def test_recomen_data():
+    assert get_recomendation_data() == get_recomen_data()
+
+def test_recomen_answer_positive():
+    courses = get_recomen_data()
+    recomondation, recomendation_by_down, recomendation_by_mean, today_course, mean, diff_courses, ten_percent = get_recomend_courses(courses[3], courses[0:3])
+    odpoved = []
+    if recomondation:
+        odpoved.append("Ano, kurz eura je dnes doporucen.<br>")
+    else:
+        odpoved.append("Ne, kurz eura neni dnes doporucovan.<br>")
+    odpoved.append("Dnesni kurz: %.3f CZE/EUR <br>" % today_course)
+    odpoved.append("Prumer za posledni tři dny: %.3f CZE/EUR <br>" % mean)
+    if diff_courses > 0:
+        odpoved.append("Kurz vzrostl za posledni tri dny o %.3f <br>" % diff_courses)
+    else:
+        odpoved.append("Kurz klesl za posledni tri dny o %f <br>" % abs(diff_courses))
+
+    if recomendation_by_down:
+        odpoved.append("Kurz posledni tri dny pouze klesá. <br>")
+    else:
+        odpoved.append("Kurz posledni tri dny je nestabilni. <br>")
+
+    if recomendation_by_mean:
+        odpoved.append("Kurz se nezvysil o více nez 10 procent z prumeru poslednich tri dni<br>")
+        odpoved.append("Kurz by se nedal doporucit pokud by vzrostl o %.3f na %.3f CZE/EUR <br>" % (ten_percent, today_course + ten_percent))
+    else:
+        odpoved.append("Kurz se zvysil o více nez 10 procent z prumeru za posledni tri dny<br>")
+        odpoved.append("Kurz by se dal doporucit pokud by klesl o %.3f na %.3f <br>" % (ten_percent, today_course + ten_percent))
+
+    assert get_answer("Doporucujes mi euro?") == "".join(odpoved)
+
+
