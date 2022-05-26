@@ -126,7 +126,7 @@ def get_answer(question):
 
         return odpoved
     elif nltk.edit_distance(norm_question, "help?") < 2:
-        return "Jaký je čas?<br>Jaký je kurz?<br>Jak se jmenuješ"
+        return "Jaký je čas?<br>Jaký je kurz?<br>Jak se jmenuješ<br>Doporucujes mi euro?<br>jaka je historie kurzu eura?"
     else:
         return "nerozumím"
 
