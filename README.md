@@ -4,6 +4,9 @@
 
 Aplikace bude sloužit ke komunikaci s tzv. Chatbotem skrze webovou aplikaci.
 
+<img src="https://github.com/JanPodavka/ChatBotproject/blob/master/data/Sn%C3%ADmek%20obrazovky%202022-07-17%20002735.png">
+
+
 ## Pojmy
 - Chatbot: program určený k automatizované komunikaci s lidmi. Tato implementace obsahuje již předdefinovanou řadu dotazů a odpovědí na ně
 - SEČ: Středoevropský čas
