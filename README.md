@@ -1,5 +1,7 @@
 # ChatBox DSP - softwarové inženýrství
 
+- webová aplikace aktuálně k nalezení: https://chatbotstin.herokuapp.com/
+
 ## Úvod
 
 Aplikace bude sloužit ke komunikaci s tzv. Chatbotem skrze webovou aplikaci.
